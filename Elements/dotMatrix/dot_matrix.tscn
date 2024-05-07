@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2im3a2kfprgu"]
+
+[ext_resource type="Script" path="res://Elements/dotMatrix/dot_matrix.gd" id="1_h8i4f"]
+[ext_resource type="Resource" uid="uid://bmshox531lm2" path="res://dataTables/molds/oak_staff_a12.tres" id="2_6irg1"]
+
+[node name="DotMatrix" type="Node2D"]
+script = ExtResource("1_h8i4f")
+curr_mold = ExtResource("2_6irg1")

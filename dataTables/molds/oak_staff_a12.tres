@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Mold" load_steps=2 format=3 uid="uid://bmshox531lm2"]
+
+[ext_resource type="Script" path="res://scripts/Mold.gd" id="1_4b6lm"]
+
+[resource]
+script = ExtResource("1_4b6lm")
+solid_dots = PackedVector2Array(0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 1, 1, 1, 2, 1, 3, 2, 1, 3, 1, 4, 1, 5, 1, 0, 1, 0, 2, 0, 3)
+name = ""
