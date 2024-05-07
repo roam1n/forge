@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://Elements/dotMatrix/solid_dot.gd" id="1_poiew"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s40ct"]
-radius = 14.0
+radius = 8.0
 
 [node name="SolidDot" type="Area2D"]
 collision_layer = 15
+collision_priority = 99.0
 priority = 99
 script = ExtResource("1_poiew")
 
@@ -16,6 +17,3 @@ shape = SubResource("CircleShape2D_s40ct")
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.435294, 0.603922, 1, 1)
 polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
-
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

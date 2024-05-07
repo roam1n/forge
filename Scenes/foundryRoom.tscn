@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://buxb7ioborqqj"]
+
+[ext_resource type="Script" path="res://Scenes/foundryRoom.gd" id="1_q1cvm"]
+[ext_resource type="PackedScene" uid="uid://bbtmlqwqbnwwa" path="res://Elements/dotMatrix/solid_dot.tscn" id="1_vifgb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ooe0u"]
+radius = 15.0
+
+[node name="FoundryRoom" type="Node2D"]
+position = Vector2(270, 142)
+script = ExtResource("1_q1cvm")
+
+[node name="SolidDot1" parent="." instance=ExtResource("1_vifgb")]
+
+[node name="SolidDot2" parent="." instance=ExtResource("1_vifgb")]
+position = Vector2(30, 0)
+
+[node name="SolidDot3" parent="." instance=ExtResource("1_vifgb")]
+position = Vector2(0, 30)
+
+[node name="SolidDot4" parent="." instance=ExtResource("1_vifgb")]
+position = Vector2(30, 30)
+
+[node name="RigidBody2D" type="StaticBody2D" parent="."]
+position = Vector2(128, 31)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_ooe0u")
+
+[node name="Polygon2D" type="Polygon2D" parent="RigidBody2D"]
+polygon = PackedVector2Array(-11, -8, 12, -8, 12, 8, -11, 8)
