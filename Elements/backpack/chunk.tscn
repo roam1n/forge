@@ -1,13 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://cs0b85gxou0vh"]
+[gd_scene load_steps=3 format=3 uid="uid://cs0b85gxou0vh"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ooe0u"]
-radius = 15.0
+[ext_resource type="Script" path="res://Elements/backpack/chunk.gd" id="1_jgg18"]
+[ext_resource type="Resource" uid="uid://bot3m71hqqqt" path="res://dataTables/chunks/resonance.tres" id="2_curon"]
 
 [node name="Chunk" type="StaticBody2D"]
 position = Vector2(128, 31)
+script = ExtResource("1_jgg18")
+data = ExtResource("2_curon")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ooe0u")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-11, -8, 12, -8, 12, 8, -11, 8)
+polygon = PackedVector2Array(-15, -15, 30, -15, 30, 45, 15, 45, 15, 15, -15, 15)
+
+[node name="Dot" type="Polygon2D" parent="."]
+color = Color(0.435294, 0.603922, 1, 1)
+polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)

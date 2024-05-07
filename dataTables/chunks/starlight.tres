@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Chunk" load_steps=2 format=3 uid="uid://d0nrip1wymjnb"]
+
+[ext_resource type="Script" path="res://scripts/Chunk.gd" id="1_5bdfp"]
+
+[resource]
+script = ExtResource("1_5bdfp")
+polygon = PackedVector2Array(0, -15, 15, 0, 0, 15, -15, 0)
+name = "星辉"

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Chunk" load_steps=2 format=3 uid="uid://bkhjvh5u88h1s"]
+
+[ext_resource type="Script" path="res://scripts/Chunk.gd" id="1_awf4w"]
+
+[resource]
+script = ExtResource("1_awf4w")
+polygon = PackedVector2Array(-15, -15, 0, -30, 15, -15, 15, 15, -15, 15)
+name = "烈焰"

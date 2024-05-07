@@ -13,8 +13,8 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if _is_focusing_chunk or (get_local_mouse_position() - chunk.position).length() >= 25.0:
 		_is_focusing_chunk = true
-		chunk.position = get_local_mouse_position()
-	
+		chunk.rotation_degrees = _rotate_chunk(chunk.rotation_degrees)
+
 	if Input.is_action_just_pressed("mouse_right"):
 		chunk.rotation_degrees = _rotate_chunk(chunk.rotation_degrees)
 		print("rotation: ", chunk.rotation_degrees)
