@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_awf4w")
-polygon = PackedVector2Array(-0.99, -0.99, 0, -1.99, 0.99, -0.99, 0.99, 0.99, -0.99, 0.99)
+polygon = PackedVector2Array(-0.999, -0.999, 0, -1.999, 0.999, -0.999, 0.999, 0.999, -0.999, 0.999)
 name = "烈焰"
 color = Color(0.949869, 0.2811, 0.408495, 1)

@@ -412,14 +412,14 @@ layer_0/tile_data = PackedInt32Array(851991, 1245184, 7, 786455, 1245184, 7, 720
 position = Vector2(96, 16)
 
 [node name="Chunk2" parent="." instance=ExtResource("2_nsnny")]
-position = Vector2(288, 20)
+position = Vector2(290, 29)
 
 [node name="Chunk3" parent="." instance=ExtResource("2_nsnny")]
-position = Vector2(312, 20)
+position = Vector2(313, 26)
 data = ExtResource("3_sq5br")
 
 [node name="Chunk" parent="." instance=ExtResource("2_nsnny")]
-position = Vector2(334, 23)
+position = Vector2(337, 28)
 data = ExtResource("3_rgvl5")
 
 [node name="Chunk4" parent="." instance=ExtResource("2_nsnny")]
@@ -427,11 +427,11 @@ position = Vector2(288, 52)
 data = ExtResource("6_ettp7")
 
 [node name="Chunk5" parent="." instance=ExtResource("2_nsnny")]
-position = Vector2(315, 53)
+position = Vector2(317, 60)
 data = ExtResource("7_kplg1")
 
 [node name="Chunk6" parent="." instance=ExtResource("2_nsnny")]
-position = Vector2(360, 22)
+position = Vector2(360, 25)
 data = ExtResource("8_oqaqr")
 
 [connection signal="active_dot" from="DotMatrix" to="." method="_on_dot_matrix_active_dot"]
