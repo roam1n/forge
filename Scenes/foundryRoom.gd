@@ -13,7 +13,7 @@ func _physics_process(_delta: float) -> void:
 			_is_focusing_chunk = true
 			focus_chunk.position = get_global_mouse_position()
 
-func _on_dot_matrix_active_dot(dot_position: Vector2) -> void:
+func _on_dot_matrix_active_dot(dot_position: Vector2, _dot_type: String) -> void:
 	if focus_chunk:
 		_is_focusing_chunk = false
 		focus_chunk.position = dot_position
