@@ -8,7 +8,7 @@ const SOLID_DOT:PackedScene = preload("res://Elements/dotMatrix/solid_dot.tscn")
 # 当鼠标移到点的区域范围内，返回这个点的位置信息
 signal active_dot(dot_position:Vector2)
 
-const DISTANCE:float = 30.01
+const DISTANCE:float = 16.0
 
 func _ready() -> void:
 	generate_dot_matrix(curr_mold.solid_dots)
@@ -24,3 +24,6 @@ func generate_dot_matrix(solids:PackedVector2Array) -> void:
 			node.position.y = solid.y * DISTANCE
 		else:
 			node.position = solid * DISTANCE
+		# 设置node的检测区域
+		var collision:CollisionShape2D = node.get_node("CollisionShape2D")
+		collision.shape.size = Vector2(DISTANCE, DISTANCE)

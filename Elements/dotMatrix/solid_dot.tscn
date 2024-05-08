@@ -14,4 +14,4 @@ shape = SubResource("RectangleShape2D_2p3pu")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.435294, 0.603922, 1, 1)
-polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
+polygon = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)

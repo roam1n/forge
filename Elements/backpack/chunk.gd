@@ -13,6 +13,7 @@ signal unfocus_chunk(chunk: Area2D)
 		_update_polygon(data.polygon)
 
 const ROTATE_DEGREES: float = 45.0
+const CHUNK_SCALE: float = 8.0
 
 
 func _ready() -> void:
@@ -31,7 +32,11 @@ func _set(property: StringName, value: Variant) -> bool:
 	return false
 
 # 根据当前chunk的数据生成多边形
-func _update_polygon(new_polygon) -> void:
+func _update_polygon(base_polygon) -> void:
+	var new_polygon: PackedVector2Array = PackedVector2Array()
+	for point in base_polygon:
+		new_polygon.push_back(point * CHUNK_SCALE)
+	
 	if collision_polygon_2d is CollisionPolygon2D:
 		collision_polygon_2d.polygon = new_polygon
 	if polygon_2d is Polygon2D:

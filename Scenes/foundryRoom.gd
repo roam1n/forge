@@ -9,14 +9,14 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if focus_chunk:
-		if _is_focusing_chunk or (get_local_mouse_position() - focus_chunk.position).length() >= 25.0:
+		if _is_focusing_chunk or (get_global_mouse_position() - focus_chunk.position).length() >= 25.0:
 			_is_focusing_chunk = true
-			focus_chunk.position = get_local_mouse_position()
+			focus_chunk.position = get_global_mouse_position()
 
 func _on_dot_matrix_active_dot(dot_position: Vector2) -> void:
 	if focus_chunk:
-		focus_chunk.position = dot_position
 		_is_focusing_chunk = false
+		focus_chunk.position = dot_position
 
 func _on_chunk_be_focused(chunk: Area2D) -> void:
 	focus_chunk = chunk

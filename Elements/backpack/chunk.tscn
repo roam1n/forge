@@ -9,14 +9,14 @@ script = ExtResource("1_jgg18")
 data = ExtResource("2_cacq0")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-15, -15, -15, 15, 15, 15, 15, -15)
+polygon = PackedVector2Array(-5, -5, -5, 5, 5, 5, 5, -5)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-15, -15, 15, -15, 15, 15, -15, 15)
+polygon = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
 
 [node name="Dot" type="Polygon2D" parent="."]
 color = Color(0.435294, 0.603922, 1, 1)
-polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
+polygon = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_1m2x8")
-polygon = PackedVector2Array(-15, 15, 15, 15, 15, -15, 0, -15, 0, -45, -15, -30)
+polygon = PackedVector2Array(-0.99, 0.99, 0.99, 0.99, 0.99, -0.99, -0.01, -0.99, -0.01, -2.99, -0.99, -1.99)
 name = "共鸣"
 color = Color(0.85098, 0.905882, 0.611765, 1)

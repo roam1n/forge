@@ -9,4 +9,5 @@ func _ready() -> void:
 func _on_mouse_entered() -> void:
 	if owner and owner.active_dot:
 		print("current dot position: ", position)
-		owner.active_dot.emit(position)
+		# solid_dot的position是以dot_matrix为基点的
+		owner.active_dot.emit(position + owner.position)

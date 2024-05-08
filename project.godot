@@ -20,7 +20,7 @@ resources_spreadsheet_view/context_menu_on_leftclick=false
 
 [application]
 
-config/name="forge"
+config/name="Foundry"
 config/features=PackedStringArray("4.2", "Mobile")
 
 [display]
