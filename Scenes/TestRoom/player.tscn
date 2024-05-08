@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctublvsvmnfhh"]
+
+[ext_resource type="Texture2D" uid="uid://cc5msn0226lda" path="res://assets/0x72_16x16DungeonTileset.v5.png" id="1_lxuhi"]
+[ext_resource type="Script" path="res://scripts/TestRoom/player.gd" id="1_o7w8d"]
+[ext_resource type="Texture2D" uid="uid://bn6lp6hrouj2j" path="res://icon.svg" id="3_7ohgu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubek8"]
+size = Vector2(12.5, 12.75)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_mask = 15
+script = ExtResource("1_o7w8d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lxuhi")
+hframes = 32
+vframes = 16
+frame = 488
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.25, 0.375)
+shape = SubResource("RectangleShape2D_ubek8")
+
+[node name="face_direction" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="face_direction"]
+position = Vector2(12, 0)
+
+[node name="debug_mark" type="Sprite2D" parent="face_direction/Marker2D"]
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("3_7ohgu")

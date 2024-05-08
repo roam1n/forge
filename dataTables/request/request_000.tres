@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Request" load_steps=2 format=3 uid="uid://cq1bcvfukcjps"]
+
+[ext_resource type="Script" path="res://scripts/TestRoom/request.gd" id="1_uysv4"]
+
+[resource]
+script = ExtResource("1_uysv4")
+min_damage = 10
+frequency = 0
+range = 0
+type = 0
