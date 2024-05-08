@@ -1,18 +1,23 @@
 [gd_scene load_steps=3 format=3 uid="uid://cs0b85gxou0vh"]
 
 [ext_resource type="Script" path="res://Elements/backpack/chunk.gd" id="1_jgg18"]
-[ext_resource type="Resource" uid="uid://bot3m71hqqqt" path="res://dataTables/chunks/resonance.tres" id="2_curon"]
+[ext_resource type="Resource" uid="uid://d0nrip1wymjnb" path="res://dataTables/chunks/starlight.tres" id="2_cacq0"]
 
-[node name="Chunk" type="StaticBody2D"]
+[node name="Chunk" type="Area2D" groups=["chunk"]]
 position = Vector2(128, 31)
 script = ExtResource("1_jgg18")
-data = ExtResource("2_curon")
+data = ExtResource("2_cacq0")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-15, -15, -15, 15, 15, 15, 15, -15)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-15, -15, 30, -15, 30, 45, 15, 45, 15, 15, -15, 15)
+polygon = PackedVector2Array(-15, -15, 15, -15, 15, 15, -15, 15)
 
 [node name="Dot" type="Polygon2D" parent="."]
 color = Color(0.435294, 0.603922, 1, 1)
 polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]

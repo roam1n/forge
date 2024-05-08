@@ -4,14 +4,23 @@
       "resource_local_to_scene": true,
       "resource_path": true
     },
+    "res://dataTables/chunks/": {
+      "resource_local_to_scene": true,
+      "resource_name": true
+    },
+    "res://dataTables/molds/": {
+      "resource_local_to_scene": true,
+      "resource_name": true
+    },
     "res://dataTables/request/": {
       "resource_local_to_scene": true,
       "resource_name": true
     }
   },
   "recent_paths": [
-    "res://dataTables/request/requests_spreadsheet_import.tres",
-    "res://dataTables/request/"
+    "res://dataTables/request/",
+    "res://dataTables/molds/",
+    "res://dataTables/chunks/"
   ],
   "table_functions": {
     "filter": [

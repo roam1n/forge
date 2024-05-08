@@ -1,19 +1,41 @@
-[gd_scene load_steps=5 format=3 uid="uid://buxb7ioborqqj"]
+[gd_scene load_steps=9 format=3 uid="uid://buxb7ioborqqj"]
 
 [ext_resource type="Script" path="res://Scenes/foundryRoom.gd" id="1_q1cvm"]
 [ext_resource type="PackedScene" uid="uid://cs0b85gxou0vh" path="res://Elements/backpack/chunk.tscn" id="2_nsnny"]
 [ext_resource type="PackedScene" uid="uid://b2im3a2kfprgu" path="res://Elements/dotMatrix/dot_matrix.tscn" id="2_ot4po"]
+[ext_resource type="Resource" uid="uid://dgg1m1rgwiv1r" path="res://dataTables/chunks/tidal.tres" id="3_rgvl5"]
 [ext_resource type="Resource" uid="uid://cmr62hpr1bk26" path="res://dataTables/chunks/life.tres" id="3_sq5br"]
+[ext_resource type="Resource" uid="uid://5hhpa6oqc3cc" path="res://dataTables/chunks/storm.tres" id="6_ettp7"]
+[ext_resource type="Resource" uid="uid://bkhjvh5u88h1s" path="res://dataTables/chunks/blaze.tres" id="7_kplg1"]
+[ext_resource type="Resource" uid="uid://bot3m71hqqqt" path="res://dataTables/chunks/resonance.tres" id="8_oqaqr"]
 
 [node name="FoundryRoom" type="Node2D"]
 position = Vector2(50, 40)
 script = ExtResource("1_q1cvm")
 
-[node name="Chunk" parent="." instance=ExtResource("2_nsnny")]
-position = Vector2(276, 151)
-input_pickable = true
+[node name="DotMatrix" parent="." instance=ExtResource("2_ot4po")]
+
+[node name="Chunk2" parent="." instance=ExtResource("2_nsnny")]
+position = Vector2(274, 33)
+
+[node name="Chunk3" parent="." instance=ExtResource("2_nsnny")]
+position = Vector2(275, 93)
 data = ExtResource("3_sq5br")
 
-[node name="DotMatrix" parent="." instance=ExtResource("2_ot4po")]
+[node name="Chunk" parent="." instance=ExtResource("2_nsnny")]
+position = Vector2(276, 151)
+data = ExtResource("3_rgvl5")
+
+[node name="Chunk4" parent="." instance=ExtResource("2_nsnny")]
+position = Vector2(207, 151)
+data = ExtResource("6_ettp7")
+
+[node name="Chunk5" parent="." instance=ExtResource("2_nsnny")]
+position = Vector2(63, 152)
+data = ExtResource("7_kplg1")
+
+[node name="Chunk6" parent="." instance=ExtResource("2_nsnny")]
+position = Vector2(137, 151)
+data = ExtResource("8_oqaqr")
 
 [connection signal="active_dot" from="DotMatrix" to="." method="_on_dot_matrix_active_dot"]

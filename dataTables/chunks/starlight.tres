@@ -6,3 +6,4 @@
 script = ExtResource("1_5bdfp")
 polygon = PackedVector2Array(0, -15, 15, 0, 0, 15, -15, 0)
 name = "星辉"
+color = Color(0.858824, 0.835294, 0.129412, 1)
