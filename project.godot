@@ -23,6 +23,10 @@ resources_spreadsheet_view/context_menu_on_leftclick=false
 config/name="Foundry"
 config/features=PackedStringArray("4.2", "Mobile")
 
+[autoload]
+
+Global="*res://scripts/global.gd"
+
 [display]
 
 window/size/viewport_width=384
