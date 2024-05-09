@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_5bdfp")
-polygon = PackedVector2Array(0, -1.999, 0.999, 0, 0, 0.999, -0.999, 0)
 name = "星辉"
+polygon = PackedVector2Array(0, -1.999, 0.999, 0, 0, 0.999, -0.999, 0)
 color = Color(0.858824, 0.835294, 0.129412, 1)
+patterns_data = {}

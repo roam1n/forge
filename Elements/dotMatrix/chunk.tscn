@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cs0b85gxou0vh"]
 
-[ext_resource type="Script" path="res://Elements/backpack/chunk.gd" id="1_jgg18"]
+[ext_resource type="Script" path="res://Elements/dotMatrix/chunk.gd" id="1_jgg18"]
 [ext_resource type="Resource" uid="uid://d0nrip1wymjnb" path="res://dataTables/chunks/starlight.tres" id="2_cacq0"]
 
 [node name="Chunk" type="Area2D" groups=["chunk"]]
@@ -13,6 +13,8 @@ polygon = PackedVector2Array(-5, -5, -5, 5, 5, 5, 5, -5)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 polygon = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
 
 [node name="Dot" type="Polygon2D" parent="."]
 color = Color(0.435294, 0.603922, 1, 1)
