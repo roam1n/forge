@@ -16,21 +16,21 @@ var _format_polygon: PackedVector2Array
 func generate_patterns_data() -> void:
 	_check_point_of_first_ring(2)
 	_check_point_of_first_ring(3)
-	_check_point_of_first_ring(1)
+	var rand = randi_range(1,4)*0.5*PI
+	_format_polygon = _format_polygon * Transform2D(rand, Vector2(0,0))
+	_check_point_of_first_ring(1, rand)
 
 # 目前点的数据为了相邻的点不产生重叠，有一定点偏移量
-func _check_point_of_first_ring(num: int) -> void:
+func _check_point_of_first_ring(num: int, curr_rotation:float = 0.0) -> void:
 	var points: PackedVector2Array = _generate_square_points(Vector2(0,0), num)
 	for point in points:
 		var ring_points: PackedVector2Array = _generate_square_points(point, 1)
-		var intersect_polygons: Array[PackedVector2Array] = Geometry2D.intersect_polygons(ring_points , _format_polygon )
-		if num == 1:
-			print(intersect_polygons)
+		var intersect_polygons: Array[PackedVector2Array] = Geometry2D.intersect_polygons(ring_points , _format_polygon)
 		if intersect_polygons.size() > 0:
 			var edges: Array = intersect_polygons.map(func(i): return _check_same_edges(i * Transform2D(0.0, point)))[0]
 			if edges.size() > 0:
 				# 记录相交的点，和点包含点边
-				patterns_data[point] = edges
+				patterns_data[point] = {"edges":edges, "c_rotation": curr_rotation}
 			#print(name, ": ",point, "    ", intersect_polygons.map(func(i): return _check_same_edges( i * Transform2D(0.0, point) )) ,"    ", intersect_polygons.map(func(i): return  i * Transform2D(0.0, point)  ))
 
 # 围绕中心点，生成正方形

@@ -5,7 +5,7 @@ extends Area2D
 @onready var polygon_2d_2: Polygon2D = $Polygon2D2
 @onready var dot: Polygon2D = $Dot
 
-const _010 = preload("res://assets/magic_patterns/010.png")
+const _011 = preload("res://assets/magic_patterns/011.png")
 
 signal focus_chunk(chunk: Area2D)
 signal unfocus_chunk(chunk: Area2D)
@@ -45,10 +45,12 @@ func _update_polygon(base_polygon) -> void:
 	if polygon_2d is Polygon2D:
 		polygon_2d.polygon = new_polygon
 		polygon_2d_2.polygon = new_polygon
-		polygon_2d_2.texture = _010
+		polygon_2d_2.texture = _011
 		data.generate_patterns_data()
 		if data.patterns_data.size() > 0:
-			polygon_2d_2.texture_offset = Vector2(CHUNK_SCALE,CHUNK_SCALE) - data.patterns_data.keys().pick_random() * CHUNK_SCALE
+			var key = data.patterns_data.keys().pick_random()
+			polygon_2d_2.texture_offset = (Vector2(CHUNK_SCALE,CHUNK_SCALE) - key * CHUNK_SCALE)
+			polygon_2d_2.texture_rotation = data.patterns_data[key].c_rotation
 
 # 按住鼠标左键移动chunk，点击一下鼠标右键旋转一次块
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
