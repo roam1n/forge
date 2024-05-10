@@ -21,6 +21,7 @@ resources_spreadsheet_view/context_menu_on_leftclick=false
 [application]
 
 config/name="Foundry"
+run/main_scene="res://Scenes/storeFront/storeFront.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 
 [autoload]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://devfa4gscvya5"]
+
+[ext_resource type="Texture2D" uid="uid://cc5msn0226lda" path="res://assets/0x72_16x16DungeonTileset.v5.png" id="1_whirm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dag26"]
+atlas = ExtResource("1_whirm")
+region = Rect2(272, 240, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7cs2"]
+atlas = ExtResource("1_whirm")
+region = Rect2(288, 240, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_136wi"]
+animations = [{
+"frames": [{
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_dag26")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_u7cs2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rlxlu"]
+size = Vector2(10, 16)
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_136wi")
+autoplay = "default"
+frame_progress = 0.785814
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rlxlu")

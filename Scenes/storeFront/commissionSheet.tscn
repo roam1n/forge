@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://88gt3j0hvmns"]
+
+[ext_resource type="Texture2D" uid="uid://cc5msn0226lda" path="res://assets/0x72_16x16DungeonTileset.v5.png" id="1_dbqcb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dluu4"]
+size = Vector2(11.9688, 2)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="CommissionSheet" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+texture = ExtResource("1_dbqcb")
+region_enabled = true
+region_rect = Rect2(401, 177, 12, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_dluu4")
