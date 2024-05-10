@@ -1,14 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://buxb7ioborqqj"]
+[gd_scene load_steps=6 format=3 uid="uid://buxb7ioborqqj"]
 
 [ext_resource type="Script" path="res://Scenes/foundryRoom.gd" id="1_q1cvm"]
 [ext_resource type="Texture2D" uid="uid://cc5msn0226lda" path="res://assets/0x72_16x16DungeonTileset.v5.png" id="2_env5p"]
-[ext_resource type="PackedScene" uid="uid://cs0b85gxou0vh" path="res://Elements/dotMatrix/chunk.tscn" id="2_nsnny"]
 [ext_resource type="PackedScene" uid="uid://b2im3a2kfprgu" path="res://Elements/dotMatrix/dot_matrix.tscn" id="2_ot4po"]
-[ext_resource type="Resource" uid="uid://dgg1m1rgwiv1r" path="res://dataTables/chunks/tidal.tres" id="3_rgvl5"]
-[ext_resource type="Resource" uid="uid://cmr62hpr1bk26" path="res://dataTables/chunks/life.tres" id="3_sq5br"]
-[ext_resource type="Resource" uid="uid://5hhpa6oqc3cc" path="res://dataTables/chunks/storm.tres" id="6_ettp7"]
-[ext_resource type="Resource" uid="uid://bkhjvh5u88h1s" path="res://dataTables/chunks/blaze.tres" id="7_kplg1"]
-[ext_resource type="Resource" uid="uid://bot3m71hqqqt" path="res://dataTables/chunks/resonance.tres" id="8_oqaqr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_53nga"]
 texture = ExtResource("2_env5p")
@@ -410,28 +404,5 @@ layer_0/tile_data = PackedInt32Array(851991, 1245184, 7, 786455, 1245184, 7, 720
 
 [node name="DotMatrix" parent="." instance=ExtResource("2_ot4po")]
 position = Vector2(96, 16)
-
-[node name="Chunk2" parent="." instance=ExtResource("2_nsnny")]
-position = Vector2(289, 17)
-
-[node name="Chunk3" parent="." instance=ExtResource("2_nsnny")]
-position = Vector2(321, 17)
-data = ExtResource("3_sq5br")
-
-[node name="Chunk" parent="." instance=ExtResource("2_nsnny")]
-position = Vector2(353, 17)
-data = ExtResource("3_rgvl5")
-
-[node name="Chunk4" parent="." instance=ExtResource("2_nsnny")]
-position = Vector2(289, 49)
-data = ExtResource("6_ettp7")
-
-[node name="Chunk5" parent="." instance=ExtResource("2_nsnny")]
-position = Vector2(321, 49)
-data = ExtResource("7_kplg1")
-
-[node name="Chunk6" parent="." instance=ExtResource("2_nsnny")]
-position = Vector2(353, 49)
-data = ExtResource("8_oqaqr")
 
 [connection signal="active_dot" from="DotMatrix" to="." method="_on_dot_matrix_active_dot"]

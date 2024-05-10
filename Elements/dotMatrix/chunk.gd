@@ -6,6 +6,8 @@ extends Area2D
 @onready var dot: Polygon2D = $Dot
 
 const _011 = preload("res://assets/magic_patterns/011.png")
+const ROTATE_DEGREES: float = 45.0
+const CHUNK_SCALE: float = 8.0
 
 signal focus_chunk(chunk: Area2D)
 signal unfocus_chunk(chunk: Area2D)
@@ -14,17 +16,18 @@ signal unfocus_chunk(chunk: Area2D)
 	set(v):
 		data = v
 		_update_polygon(data.polygon)
-
-const ROTATE_DEGREES: float = 45.0
-const CHUNK_SCALE: float = 8.0
+var pattern_edges: Array
+var pattern_center: Vector2
+var _pattern_area: Area2D
+var _pattern_scope: Polygon2D
+var _pattern_rotation: float
+var _pattern_texture := _011
+var _is_overlap :bool = false 
 
 
 func _ready() -> void:
 	_update_polygon(data.polygon)
 	polygon_2d.color = data.color
-	if owner:
-		focus_chunk.connect(owner._on_chunk_be_focused)
-		unfocus_chunk.connect(owner._on_chunk_unfocused)
 
 # dot 不会跟随chunk一起旋转
 func _set(property: StringName, value: Variant) -> bool:
@@ -45,12 +48,20 @@ func _update_polygon(base_polygon) -> void:
 	if polygon_2d is Polygon2D:
 		polygon_2d.polygon = new_polygon
 		polygon_2d_2.polygon = new_polygon
-		polygon_2d_2.texture = _011
+		polygon_2d_2.texture = _pattern_texture
 		data.generate_patterns_data()
-		if data.patterns_data.size() > 0:
-			var key = data.patterns_data.keys().pick_random()
-			polygon_2d_2.texture_offset = (Vector2(CHUNK_SCALE,CHUNK_SCALE) - key * CHUNK_SCALE)
-			polygon_2d_2.texture_rotation = data.patterns_data[key].c_rotation
+
+func generate_patters_data(center: Vector2) -> void:
+	if data.patterns_data.size() > 0:
+		if data.patterns_data.get(center):
+			pattern_center = center
+		else:
+			pattern_center = data.patterns_data.keys().pick_random()
+		pattern_edges = data.patterns_data[pattern_center].edges
+		_pattern_rotation = data.patterns_data[pattern_center].c_rotation
+		polygon_2d_2.texture_offset = Vector2(CHUNK_SCALE,CHUNK_SCALE) - pattern_center * CHUNK_SCALE
+		polygon_2d_2.texture_rotation = data.patterns_data[pattern_center].c_rotation
+		_handler_pattern_start()
 
 # 按住鼠标左键移动chunk，点击一下鼠标右键旋转一次块
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -62,7 +73,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		unfocus_chunk.emit(self)
 	elif event.is_action_pressed("mouse_right"):
 		rotation_degrees = _rotate_chunk(rotation_degrees)
-		print("rotation: ", rotation_degrees)
+		#print("rotation: ", rotation_degrees)
 
 # 控制chunk每次旋转的角度，将值域控制在[0,360)中
 func _rotate_chunk(current_degrees:float) -> float:
@@ -73,11 +84,69 @@ func _rotate_chunk(current_degrees:float) -> float:
 # 重叠的区域如果属于chunk组，就多边形颜色变红
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("chunk"):
+		_is_overlap = true
 		polygon_2d.color = Color.CRIMSON
 
 # 没有重叠的区域属于chunk组，就多边形颜色恢复data.color
 func _on_area_exited(_area: Area2D) -> void:
+	_is_overlap = false
 	polygon_2d.color = data.color
 	for overlap_area in get_overlapping_areas():
 		if overlap_area.is_in_group("chunk"):
+			_is_overlap = true
 			polygon_2d.color = Color.CRIMSON
+
+# chunk有编号1的边，新增分组patternStart，并且以魔纹为中心点建立边长为2*CHUNK_SCALE的正方形
+func _handler_pattern_start() -> void:
+	if pattern_edges.find(1) > -1:
+		add_to_group("patternStart")
+		var area2D = Area2D.new()
+		var collision = CollisionShape2D.new()
+		var shape2D = RectangleShape2D.new()
+		shape2D.set_size(Vector2(2*CHUNK_SCALE, 2*CHUNK_SCALE))
+		collision.shape = shape2D
+		collision.position = pattern_center * CHUNK_SCALE * Transform2D(data.patterns_data[pattern_center].c_rotation, Vector2(0,0))
+		area2D.add_child(collision)
+		area2D.monitorable = false
+		area2D.area_entered.connect(_on_pattern_start_area_entered)
+		area2D.area_exited.connect(_on_pattern_start_area_exited)
+		add_child(area2D)
+		_pattern_area = area2D
+		_show_pattern_action_scope()
+
+# 如果魔纹被激活 显示其范围
+func _show_pattern_action_scope() -> void:
+	var big_square: Polygon2D = Polygon2D.new()
+	big_square.polygon = PackedVector2Array([Vector2(-3,-3)*CHUNK_SCALE, Vector2(3,-3)*CHUNK_SCALE, 
+		Vector2(3,3)*CHUNK_SCALE, Vector2(-3,3)*CHUNK_SCALE])
+	big_square.offset = big_square.offset * Transform2D(_pattern_rotation, - pattern_center * CHUNK_SCALE)
+	big_square.color = Color(0.7,0.7,0.7,0.15)
+	big_square.hide()
+	_pattern_scope = big_square
+	add_child(big_square)
+
+# patternStart来检测周围的chunk是否能组成一个魔纹
+func _on_pattern_start_area_entered(_area: Area2D) -> void:
+	_check_pattern_action()
+
+func _on_pattern_start_area_exited(_area: Area2D) -> void:
+	_check_pattern_action()
+
+func _check_pattern_action() -> void:
+	var edges: Dictionary = {}
+	for overlap_area in _pattern_area.get_overlapping_areas():
+		# position+pattern_center == overlap_area.position+overlap_area.pattern_center and
+		if overlap_area.get("pattern_edges") and not overlap_area._is_overlap and not _is_overlap:
+			for edge in overlap_area.get("pattern_edges"):
+				if edges.get(edge):
+					break
+				edges[edge] = true
+	for edge in pattern_edges:
+		if edges.get(edge):
+			break
+		edges[edge] = true
+	print(edges)
+	if edges.keys().size() == 8:
+		_pattern_scope.show()
+	else:
+		_pattern_scope.hide()
