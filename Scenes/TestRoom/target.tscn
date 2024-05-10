@@ -1,22 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://y63iij56vl6c"]
+[gd_scene load_steps=4 format=3 uid="uid://y63iij56vl6c"]
 
+[ext_resource type="Script" path="res://scripts/TestRoom/target.gd" id="1_fpryo"]
 [ext_resource type="Texture2D" uid="uid://cc5msn0226lda" path="res://assets/0x72_16x16DungeonTileset.v5.png" id="1_olnor"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_omwfa"]
 size = Vector2(10, 14)
 
-[node name="Target" type="Node2D"]
+[node name="Target" type="StaticBody2D" groups=["Targets"]]
+collision_layer = 2
+collision_mask = 15
+script = ExtResource("1_fpryo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_omwfa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_olnor")
 hframes = 32
 vframes = 16
 frame = 289
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 2
-collision_mask = 15
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_omwfa")

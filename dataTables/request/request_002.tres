@@ -6,5 +6,5 @@
 script = ExtResource("1_3jmi0")
 min_damage = 0
 frequency = 0
-range = 3
+range = 50
 type = 0
