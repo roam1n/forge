@@ -51,26 +51,25 @@ func _update_polygon(base_polygon) -> void:
 		polygon_2d_2.texture = _pattern_texture
 		data.generate_patterns_data()
 
-func generate_patters_data(center: Vector2) -> void:
+func generate_patters_data(key: Vector3) -> void:
 	if data.patterns_data.size() > 0:
-		if data.patterns_data.get(center):
-			pattern_center = center
-		else:
-			pattern_center = data.patterns_data.keys().pick_random()
-		pattern_edges = data.patterns_data[pattern_center].edges
-		_pattern_rotation = data.patterns_data[pattern_center].c_rotation
+		if not data.patterns_data.get(key):
+			key = data.patterns_data.keys().pick_random()
+		pattern_center = Vector2(key.x, key.y)
+		pattern_edges = data.patterns_data[key]
+		_pattern_rotation = key.z
 		polygon_2d_2.texture_offset = Vector2(CHUNK_SCALE,CHUNK_SCALE) - pattern_center * CHUNK_SCALE
-		polygon_2d_2.texture_rotation = data.patterns_data[pattern_center].c_rotation
+		polygon_2d_2.texture_rotation = _pattern_rotation
 		_handler_pattern_start()
 
 # 按住鼠标左键移动chunk，点击一下鼠标右键旋转一次块
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event.is_action_pressed("mouse_left"):
-		print("mouse left pressed")
-		focus_chunk.emit(self)
-	elif event.is_action_released("mouse_left"):
-		print("mouse left released")
+	if event.is_action_released("mouse_left"): # 因为块被禁止一旦离开区域范围 有可能会检测不到离开鼠标左键
+		#print("mouse left released")
 		unfocus_chunk.emit(self)
+	elif event.is_action_pressed("mouse_left"):
+		#print("mouse left pressed")
+		focus_chunk.emit(self)
 	elif event.is_action_pressed("mouse_right"):
 		rotation_degrees = _rotate_chunk(rotation_degrees)
 		#print("rotation: ", rotation_degrees)
@@ -105,7 +104,7 @@ func _handler_pattern_start() -> void:
 		var shape2D = RectangleShape2D.new()
 		shape2D.set_size(Vector2(2*CHUNK_SCALE, 2*CHUNK_SCALE))
 		collision.shape = shape2D
-		collision.position = pattern_center * CHUNK_SCALE * Transform2D(data.patterns_data[pattern_center].c_rotation, Vector2(0,0))
+		collision.position = pattern_center * CHUNK_SCALE * Transform2D(_pattern_rotation, Vector2(0,0))
 		area2D.add_child(collision)
 		area2D.monitorable = false
 		area2D.area_entered.connect(_on_pattern_start_area_entered)
@@ -114,7 +113,7 @@ func _handler_pattern_start() -> void:
 		_pattern_area = area2D
 		_show_pattern_action_scope()
 
-# 如果魔纹被激活 显示其范围
+# 凸显被激活的魔纹
 func _show_pattern_action_scope() -> void:
 	var big_square: Polygon2D = Polygon2D.new()
 	big_square.polygon = PackedVector2Array([Vector2(-3,-3)*CHUNK_SCALE, Vector2(3,-3)*CHUNK_SCALE, 
@@ -145,7 +144,6 @@ func _check_pattern_action() -> void:
 		if edges.get(edge):
 			break
 		edges[edge] = true
-	print(edges)
 	if edges.keys().size() == 8:
 		_pattern_scope.show()
 	else:
