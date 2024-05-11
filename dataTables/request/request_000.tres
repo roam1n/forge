@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_uysv4")
 min_damage = 10
-rate = 1.8
-range = 8
+rate = 0.8
+range = 50
 type = 0
 mold = ExtResource("1_w1yd4")
 pattern_size = 1

@@ -147,7 +147,10 @@ func _is_request_met() -> bool:
 		Global.current_request.min_damage <= damage and Global.current_request.pattern_size <= pattern_size)
 
 func save_data() -> void:
-	Global.current_foundry_data = current_foundry_data
+	Global.current_weapon_damage = current_foundry_data.damage
+	Global.current_weapon_range = current_foundry_data.range
+	Global.current_weapon_fire_rate = current_foundry_data.rate
+	Global.current_weapon_pattern_size = current_foundry_data.pattern_size
 
 func _on_submit_button_down() -> void:
 	save_data()

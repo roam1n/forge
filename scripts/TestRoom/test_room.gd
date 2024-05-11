@@ -10,9 +10,9 @@ func _ready() -> void:
 	##############################################
 
 	#### Following to be set from Foundry Room ####
-	Global.current_weapon_damage = 10
-	Global.current_weapon_range = 50
-	Global.current_weapon_fire_rate = 0.2
+	#Global.current_weapon_damage = 10
+	#Global.current_weapon_range = 50
+	#Global.current_weapon_fire_rate = 0.8
 	###############################################
 	generate_targets()
 
@@ -25,7 +25,7 @@ func generate_targets():
 	target.connect("requirement_reached", Callable(self, "_on_requirement_reached"))
 	target.position = $TileMap.map_to_local(Vector2(6,5))
 	if Global.current_request.min_damage != 0:
-		target.max_health = Global.current_request.min_damage
+		target.max_health = Global.current_request.min_damage * 1.1
 	else:
 		target.max_health = Global.current_weapon_damage * 5
 	## 如果要求伤害且不要求施法间隔，人偶需要一击必杀，如果没达到，人偶回复全部血量
@@ -34,7 +34,7 @@ func generate_targets():
 	## 如果要求施法间隔，人偶逐渐回复血量
 	if Global.current_request.rate > 0:
 		target.regain_health = true
-		target.regain_health_rate = Global.current_weapon_damage * 2
+		target.regain_health_rate = Global.current_weapon_damage / (Global.current_request.rate + 0.1)
 	## 如果要求距离，人偶周围圆形区域不可行走，需要在区域外击杀人偶
 	if Global.current_request.range > 0:
 		target.shoot_range = Global.current_request.range
