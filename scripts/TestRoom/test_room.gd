@@ -5,7 +5,7 @@ var player_scene = preload("res://Scenes/TestRoom/player.tscn")
 
 func _ready() -> void:
 	#### Following to be set from Store Front ####
-	var request_resource_path = "res://dataTables/request/request_00"+str(3)+".tres"  #randi_range(0,3)
+	var request_resource_path = "res://dataTables/request/request_00"+str(0)+".tres"  #randi_range(0,3) #uli:我先暂时改为000
 	Global.current_request = load(request_resource_path)
 	##############################################
 
