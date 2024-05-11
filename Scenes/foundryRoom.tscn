@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://buxb7ioborqqj"]
+[gd_scene load_steps=7 format=3 uid="uid://buxb7ioborqqj"]
 
 [ext_resource type="Script" path="res://Scenes/foundryRoom.gd" id="1_q1cvm"]
 [ext_resource type="Texture2D" uid="uid://cc5msn0226lda" path="res://assets/0x72_16x16DungeonTileset.v5.png" id="2_env5p"]
 [ext_resource type="PackedScene" uid="uid://b2im3a2kfprgu" path="res://Elements/dotMatrix/dot_matrix.tscn" id="2_ot4po"]
+[ext_resource type="Script" path="res://scripts/StateMachine.gd" id="4_rbhvq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_53nga"]
 texture = ExtResource("2_env5p")
@@ -404,5 +405,8 @@ layer_0/tile_data = PackedInt32Array(851991, 1245184, 7, 786455, 1245184, 7, 720
 
 [node name="DotMatrix" parent="." instance=ExtResource("2_ot4po")]
 position = Vector2(96, 16)
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("4_rbhvq")
 
 [connection signal="active_dot" from="DotMatrix" to="." method="_on_dot_matrix_active_dot"]

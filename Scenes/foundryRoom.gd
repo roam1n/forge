@@ -1,9 +1,14 @@
 extends Node2D
 
+@onready var state_machine: StateMachine = $StateMachine
+
 enum State {
-	SelectRequest,
+	#SelectRequest,
 	Unmet,
 	Met,
+	ChunkFocus,
+	ChunkSuspendedActive,
+	CheckRequest,
 	Submit
 }
 
@@ -17,35 +22,50 @@ const CHUNKS_DATA = [
 	"res://dataTables/chunks/tidal.tres",
 ]
 
-var _is_chunk_action: bool = false
+signal check_request
+
 var focus_chunk: Node2D
-var state: State = State.SelectRequest
+var _dot_position: Vector2
 
 
 func _ready() -> void:
-	_is_chunk_action = true
 	_generate_chunks()
+	
+func get_next_state(state: State) -> State:
+	if not focus_chunk:
+		state = State.CheckRequest
+	match state:
+		State.ChunkFocus:
+			if focus_chunk.is_adsorbed:
+				state = State.ChunkSuspendedActive
+		State.ChunkSuspendedActive:
+			if (get_global_mouse_position() - focus_chunk.position).length() >= 12.0:
+				state = State.ChunkFocus
+	return state
 
-func _physics_process(_delta: float) -> void:
-	# 检测鼠标左键是否依旧按下（如果取消了，信号传递需要一点反应时间，可能focus_chunk还有值）
-	if focus_chunk and Input.is_action_pressed("mouse_left"):
-		# 块在距离鼠标超过16后，会从禁止装变成活跃的
-		if _is_chunk_action or (get_global_mouse_position() - focus_chunk.position).length() >= 12.0:
-			_is_chunk_action = true
+func transition_state(from: State, to: State) -> void:
+	match to:
+		State.ChunkFocus:
+			focus_chunk.is_adsorbed = false
+		State.CheckRequest:
+			check_request.emit()
+
+func tick_physics(state: State) -> void:
+	match state:
+		State.ChunkFocus:
 			focus_chunk.position = get_global_mouse_position()
 
 func _on_dot_matrix_active_dot(dot_position: Vector2, _dot_type: String) -> void:
 	# 被吸附到点的块，会被禁止行动
 	if focus_chunk:
-		_is_chunk_action = false
+		focus_chunk.is_adsorbed = true
 		focus_chunk.position = dot_position
 
 func _on_chunk_be_focused(chunk: Area2D) -> void:
-	_is_chunk_action = true
 	focus_chunk = chunk
+	state_machine.state = State.ChunkFocus
 
 func _on_chunk_unfocused(chunk: Area2D) -> void:
-	#if focus_chunk and focus_chunk.get_instance_id() == chunk.get_instance_id():
 	focus_chunk = null
 
 func _generate_chunks() -> void:

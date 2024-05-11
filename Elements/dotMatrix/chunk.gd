@@ -22,7 +22,8 @@ var _pattern_area: Area2D
 var _pattern_scope: Polygon2D
 var _pattern_rotation: float
 var _pattern_texture := _011
-var _is_overlap :bool = false 
+var _is_overlap: bool = false
+var is_adsorbed: bool = false
 
 
 func _ready() -> void:
@@ -107,8 +108,8 @@ func _handler_pattern_start() -> void:
 		collision.position = pattern_center * CHUNK_SCALE * Transform2D(_pattern_rotation, Vector2(0,0))
 		area2D.add_child(collision)
 		area2D.monitorable = false
-		area2D.area_entered.connect(_on_pattern_start_area_entered)
-		area2D.area_exited.connect(_on_pattern_start_area_exited)
+		area2D.input_pickable = false
+		owner.check_request.connect(_on_check_request)
 		add_child(area2D)
 		_pattern_area = area2D
 		_show_pattern_action_scope()
@@ -124,11 +125,8 @@ func _show_pattern_action_scope() -> void:
 	_pattern_scope = big_square
 	add_child(big_square)
 
-# patternStart来检测周围的chunk是否能组成一个魔纹
-func _on_pattern_start_area_entered(_area: Area2D) -> void:
-	_check_pattern_action()
-
-func _on_pattern_start_area_exited(_area: Area2D) -> void:
+# 检测魔纹中心点周围的chunk是否能组成一个魔纹
+func _on_check_request() -> void:
 	_check_pattern_action()
 
 func _check_pattern_action() -> void:
