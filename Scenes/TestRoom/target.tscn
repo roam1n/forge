@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/TestRoom/target.gd" id="1_fpryo"]
 [ext_resource type="Texture2D" uid="uid://cc5msn0226lda" path="res://assets/0x72_16x16DungeonTileset.v5.png" id="1_olnor"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_omwfa"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2cqk1"]
 size = Vector2(10, 14)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1phko"]
@@ -11,7 +11,7 @@ bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iy3vn"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pdmmu"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_8n86m"]
 radius = 2.0
 
 [node name="Target" type="StaticBody2D" groups=["Targets"]]
@@ -20,8 +20,7 @@ collision_mask = 15
 script = ExtResource("1_fpryo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_omwfa")
+shape = SubResource("RectangleShape2D_2cqk1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_olnor")
@@ -43,6 +42,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_iy3vn")
 show_percentage = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 13
 
-[node name="Circle_collision" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("CircleShape2D_pdmmu")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_8n86m")

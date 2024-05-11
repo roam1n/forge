@@ -12,7 +12,7 @@ func _ready() -> void:
 	#### Following to be set from Foundry Room ####
 	#Global.current_weapon_damage = 10
 	#Global.current_weapon_range = 50
-	#Global.current_weapon_fire_rate = 0.8
+	#Global.current_weapon_fire_rate = 0.7
 	###############################################
 	generate_targets()
 

@@ -8,13 +8,16 @@ var max_health = 10
 var one_time_kill = false
 var regain_health = false
 var regain_health_rate = 5
-var shoot_range = 0
+var shoot_range = 0:
+	set(v):
+		$StaticBody2D/CollisionShape2D.shape.radius = v
+		shoot_range = v
 
 func _ready():
 	health = max_health
 	$ProgressBar.max_value = max_health
 	$ProgressBar.value = max_health
-	$StaticBody2D/Circle_collision.shape.radius = shoot_range
+	$StaticBody2D/CollisionShape2D.shape.radius = shoot_range
 
 
 func _process(delta):
