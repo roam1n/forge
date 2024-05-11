@@ -1,10 +1,27 @@
-[gd_resource type="Resource" script_class="Mold" load_steps=2 format=3 uid="uid://bmshox531lm2"]
+[gd_resource type="Resource" script_class="Mold" load_steps=6 format=3 uid="uid://bmshox531lm2"]
 
 [ext_resource type="Script" path="res://scripts/Mold.gd" id="1_4b6lm"]
+[ext_resource type="Script" path="res://scripts/SpecialChunk.gd" id="1_xpwe4"]
+
+[sub_resource type="Resource" id="Resource_kq0u1"]
+script = ExtResource("1_xpwe4")
+name = "storm"
+key = Vector3(0, 1, 0)
+
+[sub_resource type="Resource" id="Resource_41k1p"]
+script = ExtResource("1_xpwe4")
+name = "resonance"
+key = Vector3(0, -3, 0)
+
+[sub_resource type="Resource" id="Resource_dt25k"]
+script = ExtResource("1_xpwe4")
+name = "tidal"
+key = Vector3(1, -1, 1.571)
 
 [resource]
 script = ExtResource("1_4b6lm")
 core_dots = PackedVector2Array(5, 6, 5, 7, 5, 8, 6, 7, 4, 7, 3, 4, 3, 5, 3, 6, 7, 4, 6, 5, 7, 6, 3, 7)
 texture_dots = PackedVector2Array(5, 3, 5, 4, 5, 5)
 output_dots = PackedVector2Array(5, 2)
-name = ""
+name = "橡木杖A12"
+chunks = Array[ExtResource("1_xpwe4")]([SubResource("Resource_kq0u1"), SubResource("Resource_41k1p"), SubResource("Resource_dt25k")])

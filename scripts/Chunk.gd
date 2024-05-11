@@ -29,8 +29,8 @@ func _check_point_of_ring(num: int, curr_rotation:float = 0.0) -> void:
 		if intersect_polygons.size() > 0:
 			var edges: Array = intersect_polygons.map(func(i): return _check_same_edges(i * Transform2D(0.0, point)))[0]
 			if edges.size() > 0:
-				# 记录相交的点，和点包含点边
-				patterns_data[Vector3(point.x, point.y, curr_rotation)] = edges
+				# 记录相交的点，点的旋转(小数点三位)和点包含点边
+				patterns_data[Vector3(point.x, point.y, roundf(curr_rotation*1000.0)/1000.0)] = edges
 
 # 围绕中心点，生成正方形
 func _generate_square_points(center: Vector2, size: int) -> PackedVector2Array:

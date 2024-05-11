@@ -11,6 +11,8 @@ signal active_dot(dot_position:Vector2, dot_type:String)
 const DISTANCE:float = 16.0
 
 func _ready() -> void:
+	if Global.current_request and Global.current_request.mold:
+		curr_mold = Global.current_request.mold
 	generate_dot_matrix(curr_mold.core_dots, "core")
 	generate_dot_matrix(curr_mold.texture_dots, "texture")
 	generate_dot_matrix(curr_mold.output_dots, "output")

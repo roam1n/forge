@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="Request" load_steps=2 format=3 uid="uid://cq1bcvfukcjps"]
+[gd_resource type="Resource" script_class="Request" load_steps=3 format=3 uid="uid://cq1bcvfukcjps"]
 
 [ext_resource type="Script" path="res://scripts/TestRoom/request.gd" id="1_uysv4"]
+[ext_resource type="Resource" uid="uid://bmshox531lm2" path="res://dataTables/molds/oak_staff_a12.tres" id="1_w1yd4"]
 
 [resource]
 script = ExtResource("1_uysv4")
 min_damage = 10
-frequency = 0
+rate = 0.0
 range = 0
 type = 0
+mold = ExtResource("1_w1yd4")

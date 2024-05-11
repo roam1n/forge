@@ -1,0 +1,5 @@
+[gd_resource type="Theme" format=3 uid="uid://dillavi3s67qq"]
+
+[resource]
+Button/font_sizes/font_size = 12
+Label/font_sizes/font_size = 12

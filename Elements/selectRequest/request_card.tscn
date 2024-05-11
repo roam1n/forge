@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://c846nm0av2ugt"]
+
+[ext_resource type="Script" path="res://Elements/selectRequest/request_card.gd" id="1_2u2vx"]
+[ext_resource type="Resource" uid="uid://cq1bcvfukcjps" path="res://dataTables/request/request_000.tres" id="2_ehupo"]
+
+[node name="RequestCard" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_2u2vx")
+request = ExtResource("2_ehupo")
+
+[node name="Number" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "委托编号：000"
+
+[node name="Type" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "类型：魔杖"
+
+[node name="Rate" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "施法间隔：小于2.0"
+
+[node name="Damage" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "魔法伤害：大于5.0"
+
+[node name="AreaRange" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "施法范围：2.0"

@@ -125,15 +125,18 @@ func _show_pattern_action_scope() -> void:
 	_pattern_scope = big_square
 	add_child(big_square)
 
-# 检测魔纹中心点周围的chunk是否能组成一个魔纹
+# 只有patternStart组的chunk 才会被信号连接
 func _on_check_request() -> void:
 	_check_pattern_action()
 
+# 检测魔纹中心点周围的chunk是否能组成一个魔纹
 func _check_pattern_action() -> void:
+	if _is_overlap or not is_adsorbed:
+		return
 	var edges: Dictionary = {}
 	for overlap_area in _pattern_area.get_overlapping_areas():
 		# position+pattern_center == overlap_area.position+overlap_area.pattern_center and
-		if overlap_area.get("pattern_edges") and not overlap_area._is_overlap and not _is_overlap:
+		if overlap_area.get("pattern_edges") and not overlap_area._is_overlap and overlap_area.is_adsorbed:
 			for edge in overlap_area.get("pattern_edges"):
 				if edges.get(edge):
 					break
