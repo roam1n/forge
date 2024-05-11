@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://drthawo37pbdc"]
+[gd_scene load_steps=13 format=3 uid="uid://drthawo37pbdc"]
 
 [ext_resource type="Script" path="res://scripts/TestRoom/test_room.gd" id="1_4r8xn"]
 [ext_resource type="Texture2D" uid="uid://cc5msn0226lda" path="res://assets/0x72_16x16DungeonTileset.v5.png" id="1_acknk"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://comeu8vy85oes" path="res://assets/storeFrontButton_PRESSED.png" id="4_7a5iw"]
 [ext_resource type="Texture2D" uid="uid://ooho64sxyix2" path="res://assets/storeFrontButton_HOVER.png" id="5_tgvgv"]
 [ext_resource type="Script" path="res://scripts/TestRoom/store_front_button.gd" id="6_1ehjx"]
+[ext_resource type="Texture2D" uid="uid://qnlappp1ka6x" path="res://assets/faundryRoomButton_NORMAL.png" id="7_alroy"]
+[ext_resource type="Texture2D" uid="uid://461ux638pw4" path="res://assets/faundryRoomButton_PRESSED.png" id="8_f6bpy"]
+[ext_resource type="Texture2D" uid="uid://doufnkru57gn1" path="res://assets/faundryRoomButton_HOVER.png" id="9_ifs21"]
+[ext_resource type="Script" path="res://scripts/StoreFront/buttonToFoundryRoom.gd" id="10_qb0ne"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gldn0"]
 texture = ExtResource("1_acknk")
@@ -1050,14 +1054,18 @@ texture_pressed = ExtResource("4_7a5iw")
 texture_hover = ExtResource("5_tgvgv")
 script = ExtResource("6_1ehjx")
 
-[node name="FoundryRoomButton" type="Button" parent="."]
-offset_left = -8.0
-offset_top = -19.0
-offset_right = 123.0
-offset_bottom = 12.0
-scale = Vector2(0.3, 0.3)
-text = "Foundary Room"
+[node name="FoundryRoomButton2" type="TextureButton" parent="."]
+offset_left = 127.0
+offset_top = -17.0
+offset_right = 217.0
+offset_bottom = 41.0
+scale = Vector2(0.852584, 0.852584)
+texture_normal = ExtResource("7_alroy")
+texture_pressed = ExtResource("8_f6bpy")
+texture_hover = ExtResource("9_ifs21")
+flip_h = true
+script = ExtResource("10_qb0ne")
 
 [connection signal="pressed" from="GUI/StoreFrontButton" to="." method="_on_store_front_button_pressed"]
 [connection signal="pressed" from="StoreFrontButton" to="StoreFrontButton" method="_on_pressed"]
-[connection signal="pressed" from="FoundryRoomButton" to="." method="_on_foundary_room_button_pressed"]
+[connection signal="pressed" from="FoundryRoomButton2" to="FoundryRoomButton2" method="_on_pressed"]
