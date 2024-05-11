@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_34es1")
 min_damage = 0
-rate = 0.2
+frequency = 0
 range = 0
 type = 0

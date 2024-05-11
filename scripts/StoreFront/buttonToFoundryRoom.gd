@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 var foundryScene = load("res://Scenes/foundryRoom.tscn")
 
 func _on_pressed():
