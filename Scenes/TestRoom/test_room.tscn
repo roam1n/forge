@@ -998,3 +998,51 @@ layer_1/tile_data = PackedInt32Array(65535, 1048576, 1, 131071, 1048576, 2, 1966
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(96, 86)
+
+[node name="GUI" type="CanvasLayer" parent="."]
+process_mode = 2
+visible = false
+
+[node name="Label" type="Label" parent="GUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.5
+offset_top = -11.5
+offset_right = 47.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Test passed!"
+
+[node name="StoreFrontButton" type="Button" parent="GUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = 15.0
+offset_right = 74.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 0
+text = "Store Front"
+
+[node name="FoundryRoomButton" type="Button" parent="."]
+offset_left = -8.0
+offset_top = -19.0
+offset_right = 123.0
+offset_bottom = 12.0
+scale = Vector2(0.3, 0.3)
+text = "Foundary Room"
+
+[connection signal="pressed" from="GUI/StoreFrontButton" to="." method="_on_store_front_button_pressed"]
+[connection signal="pressed" from="FoundryRoomButton" to="." method="_on_foundary_room_button_pressed"]

@@ -30,3 +30,4 @@ func fire():
 
 func _on_fire_rate_timer_timeout():
 	can_shoot=true
+
