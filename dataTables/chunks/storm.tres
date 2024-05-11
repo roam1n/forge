@@ -9,5 +9,5 @@ polygon = PackedVector2Array(-0.001, -0.999, 1.999, -0.999, 0.999, -0.001, 0.999
 color = Color(0.478431, 0.780392, 0.780392, 1)
 patterns_data = {}
 rate = 0.2
-range = 5
+area_range = 5
 damage = 1

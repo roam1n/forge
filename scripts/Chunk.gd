@@ -9,7 +9,7 @@ extends Resource
 @export_color_no_alpha var color: Color = Color.GAINSBORO
 @export var patterns_data: Dictionary
 @export var rate: float
-@export var range: int
+@export var area_range: int
 @export var damage: int
 
 var _format_polygon: PackedVector2Array

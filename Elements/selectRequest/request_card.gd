@@ -12,7 +12,7 @@ func _ready() -> void:
 	update_number_label(request.resource_path.get_file())
 	update_rate_label(str(request.rate))
 	update_damage_label(str(request.min_damage))
-	update_area_range_label(str(request.range))
+	update_area_range_label(str(request.area_range))
 
 func update_number_label(text:String) -> void:
 	number.text = "委托编号： " + text.split(".")[0].split("_")[1]

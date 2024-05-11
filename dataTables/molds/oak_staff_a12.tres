@@ -26,5 +26,5 @@ output_dots = PackedVector2Array(5, 2)
 name = "橡木杖A12"
 chunks = Array[ExtResource("1_xpwe4")]([SubResource("Resource_kq0u1"), SubResource("Resource_41k1p"), SubResource("Resource_dt25k")])
 rate = 1.5
-range = 25
+area_range = 25
 damage = 2

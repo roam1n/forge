@@ -36,8 +36,8 @@ func generate_targets():
 		target.regain_health = true
 		target.regain_health_rate = Global.current_weapon_damage / (Global.current_request.rate + 0.1)
 	## 如果要求距离，人偶周围圆形区域不可行走，需要在区域外击杀人偶
-	if Global.current_request.range > 0:
-		target.shoot_range = Global.current_request.range
+	if Global.current_request.area_range > 0:
+		target.shoot_range = Global.current_request.area_range
 
 func _on_requirement_reached():
 	get_tree().paused = true

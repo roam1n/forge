@@ -7,7 +7,7 @@ extends Resource
 @export var name:String
 @export var chunks: Array[SpecialChunk]
 @export var rate: float
-@export var range: int
+@export var area_range: int
 @export var damage: int
 
 #const CHUNKS_DATA = [

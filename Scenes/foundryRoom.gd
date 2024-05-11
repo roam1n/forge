@@ -126,29 +126,32 @@ func _selected_request() -> void:
 
 func _is_request_met() -> bool:
 	var rate: float = focus_mold.rate
-	var range: int = focus_mold.range
+	var area_range: int = focus_mold.area_range
 	var damage: int = focus_mold.damage
 	var pattern_size: int = 0
 	for node in get_tree().get_nodes_in_group("chunk"):
 		if not node._is_overlap and node.is_adsorbed:
-			rate -= node.data.rate
-			range += node.data.range
+			area_range += node.data.area_range
 			damage += node.data.damage
+			if rate + 0.1 > node.data.rate: #施法间隔最低0.1
+				rate -= node.data.rate
+			else:
+				rate = 0.1
 			if node.is_in_group("patternStart") and node._pattern_scope.visible:
 				pattern_size += 1
 	current_foundry_data = {
 		"rate": rate,
-		"range": range,
+		"area_range": area_range,
 		"damage": damage,
 		"pattern_size": pattern_size
 	}
 	foundry_progress.update_labels(current_foundry_data)
-	return (Global.current_request.rate >= rate and Global.current_request.range <= range and 
+	return (Global.current_request.rate >= rate and Global.current_request.area_range <= area_range and 
 		Global.current_request.min_damage <= damage and Global.current_request.pattern_size <= pattern_size)
 
 func save_data() -> void:
 	Global.current_weapon_damage = current_foundry_data.damage
-	Global.current_weapon_range = current_foundry_data.range
+	Global.current_weapon_range = current_foundry_data.area_range
 	Global.current_weapon_fire_rate = current_foundry_data.rate
 	Global.current_weapon_pattern_size = current_foundry_data.pattern_size
 

@@ -21,5 +21,5 @@ func update_labels(curr) -> void:
 		var req: Request = Global.current_request
 		damage_item.update("魔法伤害", float(curr.damage), ">=", float(req.min_damage))
 		rate_item.update("施法间隔", float(curr.rate), "<=", float(req.rate))
-		range_item.update("施法范围", float(curr.range), ">=", float(req.range))
+		range_item.update("施法范围", float(curr.area_range), ">=", float(req.area_range))
 		pattern_size_item.update("魔纹数量", float(curr.pattern_size), ">=", float(req.pattern_size))
