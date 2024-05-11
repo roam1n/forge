@@ -25,7 +25,6 @@ const CHUNKS_DATA = [
 signal check_request
 
 var focus_chunk: Node2D
-var _dot_position: Vector2
 
 
 func _ready() -> void:
@@ -43,7 +42,7 @@ func get_next_state(state: State) -> State:
 				state = State.ChunkFocus
 	return state
 
-func transition_state(from: State, to: State) -> void:
+func transition_state(_from: State, to: State) -> void:
 	match to:
 		State.ChunkFocus:
 			focus_chunk.is_adsorbed = false
@@ -65,7 +64,7 @@ func _on_chunk_be_focused(chunk: Area2D) -> void:
 	focus_chunk = chunk
 	state_machine.state = State.ChunkFocus
 
-func _on_chunk_unfocused(chunk: Area2D) -> void:
+func _on_chunk_unfocused(_chunk: Area2D) -> void:
 	focus_chunk = null
 
 func _generate_chunks() -> void:
