@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var state_machine: StateMachine = $StateMachine
 @onready var select_request: Control = %SelectRequest
+@onready var foundry_progress: Control = %FoundryProgress
+@onready var submit_button: Button = %Submit
 
 enum State {
 	SelectRequest,
@@ -26,6 +28,8 @@ const CHUNKS_DATA = {
 signal check_request
 
 var focus_chunk: Node2D
+var focus_mold: Mold
+var current_foundry_data
 
 
 func _ready() -> void:
@@ -44,9 +48,11 @@ func get_next_state(state: State) -> State:
 				state = State.CheckRequest
 			elif (get_global_mouse_position() - focus_chunk.position).length() >= 12.0:
 				state = State.ChunkFocus
-		#State.CheckRequest:
-			#if true:
-				#state = State.Unmet
+		State.CheckRequest:
+			if _is_request_met():
+				state = State.Met
+			else:
+				state = State.Unmet
 	return state
 
 func transition_state(from: State, to: State) -> void:
@@ -60,6 +66,12 @@ func transition_state(from: State, to: State) -> void:
 		State.CheckRequest:
 			select_request.hide()
 			check_request.emit()
+		State.Unmet:
+			submit_button.hide()
+			foundry_progress.show()
+		State.Met:
+			submit_button.show()
+			save_data()
 
 func tick_physics(state: State) -> void:
 	match state:
@@ -88,6 +100,7 @@ func _generate_chunks() -> void:
 		i = i+1
 	if Global.current_request and Global.current_request.mold:
 		var special_chunks = Global.current_request.mold.chunks
+		focus_mold = Global.current_request.mold
 		for chunk in special_chunks:
 			_generate_chunk(Vector2(i%3*32+x, floor(i/3)*32+y), chunk.name, chunk.key)
 			i = i+1
@@ -110,3 +123,32 @@ func _on_back_button_down() -> void:
 
 func _selected_request() -> void:
 	state_machine.state = State.CheckRequest
+
+func _is_request_met() -> bool:
+	var rate: float = focus_mold.rate
+	var range: int = focus_mold.range
+	var damage: int = focus_mold.damage
+	var pattern_size: int = 0
+	for node in get_tree().get_nodes_in_group("chunk"):
+		if not node._is_overlap and node.is_adsorbed:
+			rate -= node.data.rate
+			range += node.data.range
+			damage += node.data.damage
+			if node.is_in_group("patternStart") and node._pattern_scope.visible:
+				pattern_size += 1
+	current_foundry_data = {
+		"rate": rate,
+		"range": range,
+		"damage": damage,
+		"pattern_size": pattern_size
+	}
+	foundry_progress.update_labels(current_foundry_data)
+	return (Global.current_request.rate >= rate and Global.current_request.range <= range and 
+		Global.current_request.min_damage <= damage and Global.current_request.pattern_size <= pattern_size)
+
+func save_data() -> void:
+	Global.current_foundry_data = current_foundry_data
+
+func _on_submit_button_down() -> void:
+	save_data()
+	get_tree().change_scene_to_packed(preload("res://Scenes/TestRoom/test_room.tscn"))

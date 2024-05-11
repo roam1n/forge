@@ -25,3 +25,6 @@ texture_dots = PackedVector2Array(5, 3, 5, 4, 5, 5)
 output_dots = PackedVector2Array(5, 2)
 name = "橡木杖A12"
 chunks = Array[ExtResource("1_xpwe4")]([SubResource("Resource_kq0u1"), SubResource("Resource_41k1p"), SubResource("Resource_dt25k")])
+rate = 2.5
+range = 5
+damage = 2

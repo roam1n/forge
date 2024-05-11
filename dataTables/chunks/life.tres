@@ -8,3 +8,6 @@ name = "生命"
 polygon = PackedVector2Array(-0.999, -0.999, 0, -1.999, 0.999, -0.999, 0.999, 0.999, 0, 1.999, -0.999, 0.999)
 color = Color(0.317647, 0.701961, 0.25098, 1)
 patterns_data = {}
+rate = 0.0
+range = 1
+damage = 0

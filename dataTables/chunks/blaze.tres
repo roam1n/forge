@@ -8,3 +8,6 @@ name = "烈焰"
 polygon = PackedVector2Array(-0.999, -0.999, 0, -1.999, 0.999, -0.999, 0.999, 0.999, -0.999, 0.999)
 color = Color(0.949869, 0.2811, 0.408495, 1)
 patterns_data = {}
+rate = 0.0
+range = 0
+damage = 3

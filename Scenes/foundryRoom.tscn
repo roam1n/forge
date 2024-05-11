@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://buxb7ioborqqj"]
+[gd_scene load_steps=13 format=3 uid="uid://buxb7ioborqqj"]
 
 [ext_resource type="Script" path="res://Scenes/foundryRoom.gd" id="1_q1cvm"]
 [ext_resource type="Texture2D" uid="uid://cc5msn0226lda" path="res://assets/0x72_16x16DungeonTileset.v5.png" id="2_env5p"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cck0sgioakm4j" path="res://Elements/selectRequest/select_request.tscn" id="5_djd6t"]
 [ext_resource type="Texture2D" uid="uid://n3hcaxyahqid" path="res://assets/back.png" id="6_eqbwc"]
 [ext_resource type="Shader" uid="uid://b06mqbbofqqob" path="res://Elements/selectRequest/white.tres" id="6_ycdc5"]
+[ext_resource type="Theme" uid="uid://dillavi3s67qq" path="res://assets/theme.tres" id="8_6wydg"]
+[ext_resource type="PackedScene" uid="uid://cl01l4u6prkep" path="res://Elements/foundryProgress/foundry_progress.tscn" id="9_kic7n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_53nga"]
 texture = ExtResource("2_env5p")
@@ -422,6 +424,10 @@ unique_name_in_owner = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="FoundryProgress" parent="CanvasLayer" instance=ExtResource("9_kic7n")]
+unique_name_in_owner = true
+visible = false
+
 [node name="Back" type="Button" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_gb34s")
 offset_left = 4.0
@@ -432,5 +438,20 @@ scale = Vector2(0.04, 0.04)
 icon = ExtResource("6_eqbwc")
 flat = true
 
+[node name="Submit" type="Button" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -35.0
+offset_right = 76.0
+offset_bottom = -4.0
+grow_vertical = 0
+theme = ExtResource("8_6wydg")
+text = "保存并测试"
+
 [connection signal="active_dot" from="DotMatrix" to="." method="_on_dot_matrix_active_dot"]
 [connection signal="button_down" from="CanvasLayer/Back" to="." method="_on_back_button_down"]
+[connection signal="button_down" from="CanvasLayer/Submit" to="." method="_on_submit_button_down"]

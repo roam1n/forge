@@ -6,6 +6,9 @@ extends Resource
 @export var output_dots:PackedVector2Array = PackedVector2Array()
 @export var name:String
 @export var chunks: Array[SpecialChunk]
+@export var rate: float
+@export var range: int
+@export var damage: int
 
 #const CHUNKS_DATA = [
 	#"res://dataTables/chunks/blaze.tres",

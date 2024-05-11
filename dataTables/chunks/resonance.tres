@@ -8,3 +8,6 @@ name = "共鸣"
 polygon = PackedVector2Array(-0.999, 0.999, 0.999, 0.999, 0.999, -1.999, 0.001, -2.999, 0.001, -0.999, -0.999, -0.999)
 color = Color(0.85098, 0.905882, 0.611765, 1)
 patterns_data = {}
+rate = 0.5
+range = 0
+damage = 0

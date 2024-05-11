@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceo1pchurnd6"]
+
+[ext_resource type="Script" path="res://Elements/foundryProgress/request_item.gd" id="1_ef7yq"]
+
+[node name="RequestItem" type="VBoxContainer"]
+script = ExtResource("1_ef7yq")
+
+[node name="Key" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.905882, 0.905882, 0.905882, 1)
+text = "- 魔法伤害："
+
+[node name="Value" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.376471, 0.690196, 0.411765, 1)
+text = "2（>=5）"
